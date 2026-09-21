@@ -16,34 +16,34 @@ Week 3 focused on password cracking against a password-protected PDF file (`My L
 **1. John the Ripper installed and verified**
 JTR (jumbo build) installed on Windows; command line confirms the tool and lists available options.
 
-![John the Ripper installed and verified](W3-PM1/john_exe.png)
+![John the Ripper installed and verified](W3-PM1/john%20exe.png)
 
 **2. Johnny configured with the John the Ripper executable**
 Johnny GUI pointed to `john.exe`, confirming detection of John the Ripper 1.9.0-jumbo-1.
 
-![Johnny detecting the John the Ripper executable](W3-PM1/Detected_John_the_Ripper.png)
+![Johnny detecting the John the Ripper executable](W3-PM1/Detected%20John%20the%20Ripper.png)
 
 **3. Hash extracted from the PDF**
 Used the Online Hash Crack PDF Hash Extractor to pull the crackable `$pdf$...` hash from `My Locked PDF1.pdf`.
 
-![PDF hash extracted via Online Hash Crack](W3-PM1/Hash_of_PDF1.png)
+![PDF hash extracted via Online Hash Crack](W3-PM1/Hash%20of%20PDF1.png)
 
 **4. Hash saved to a text file**
 Hash saved locally as `hash1.txt` for import into Johnny.
 
-![Hash saved in hash1.txt](W3-PM1/Hash_Pasted.png)
+![Hash saved in hash1.txt](W3-PM1/Hash%20Pasted.png)
 
 **5. Attack run and password cracked**
 Johnny ran the attack against the saved hash and successfully recovered the password.
 
-![Johnny successfully cracking the password](W3-PM1/Password_cracked.png)
+![Johnny successfully cracking the password](W3-PM1/Password%20cracked.png)
 
 **Result:** Password = `good-luck`
 
 **6. PDF opened with the cracked password**
 The decrypted PDF opened using the recovered password, confirming success.
 
-![Decrypted PDF opened, confirming the correct password](W3-PM1/Congratulations_page.png)
+![Decrypted PDF opened, confirming the correct password](W3-PM1/Congratulations%20page.png)
 
 ---
 
@@ -56,36 +56,36 @@ The decrypted PDF opened using the recovered password, confirming success.
 **1. Hash extracted via NetworkWalks Hash Calculator**
 Uploaded `My Locked PDF1.pdf` to the [NetworkWalks Hash Calculator](https://networkwalks.com/hash-calculator/), which parsed the file locally and returned the `$pdf$...` hash.
 
-![Hash extracted via the NetworkWalks Hash Calculator](W3-PM2/Hash_showing_on_the_Hash_Calculator.png)
+![Hash extracted via the NetworkWalks Hash Calculator](W3-PM2/Hash%20showing%20on%20the%20Hash%20Calculator.png)
 
 **2. Initial attack with the built-in wordlist**
 Pasted the hash into the [NetworkWalks Password Cracker](https://networkwalks.com/password-cracker/) and ran the attack using the tool's built-in 100-word list.
 
-![Password Cracker running against the built-in 100-word list](W3-PM2/cracking_in_progress.png)
+![Password Cracker running against the built-in 100-word list](W3-PM2/cracking%20in%20progress.png)
 
 **3. Built-in wordlist exhausted — no match**
 The 100-word list ran to completion without finding a match, and a larger wordlist was uploaded (`JTR_default_password.txt`) in response.
 
-![Larger wordlist uploaded and attack restarted](W3-PM2/Added_JTR_default_password_txt.png)
+![Larger wordlist uploaded and attack restarted](W3-PM2/Added%20JTR%20default%20password%20txt.png)
 
 **4. Wordlist verified in Notepad**
 Opened the uploaded wordlist in Notepad and confirmed the correct password was present in the list before re-running the attack.
 
-![JTR_default_password.txt opened in Notepad, confirming the password is present](W3-PM2/Notepad_txt_check_of_password.png)
+![JTR_default_password.txt opened in Notepad, confirming the password is present](W3-PM2/Notepad%20txt%20check%20of%20password.png)
 
 **5. Second attack in progress with the larger wordlist**
 Re-ran the attack using the uploaded `JTR_default_password.txt` (3,556 words).
 
-![Second attack in progress using the uploaded wordlist](W3-PM2/Password_Cracking_in_Progress.png)
+![Second attack in progress using the uploaded wordlist](W3-PM2/Password%20Cracking%20in%20Progress.png)
 
 **6. Password cracked successfully**
 The attack matched the password on this run.
 
-![Password cracked successfully via NetworkWalks Password Cracker](W3-PM2/Password_cracked_successfully.png)
+![Password cracked successfully via NetworkWalks Password Cracker](W3-PM2/Password%20cracked%20successfully.png)
 
 **Result:** Password = `good-luck`
 
-The same decrypted PDF and Congratulations page shown in `W3-PM1/Congratulations_page.png` confirms the password recovered in PM2.
+The same decrypted PDF and Congratulations page shown above (PM1, Step 6) confirms the password recovered in PM2.
 
 ---
 
