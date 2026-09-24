@@ -255,3 +255,9 @@ The same decrypted PDF and flag shown above (PM1, Step 5) confirms the password 
 - Online Hash Crack — PDF Hash Extractor
 - NetworkWalks Hash Calculator
 - NetworkWalks Password Cracker
+
+---
+
+## Author
+**Kwanele Dube** — Cybersecurity Intern, NetworkWalks Academy (Batch B083)
+[LinkedIn post for this project](https://www.linkedin.com/feed/update/urn:li:activity:7508865950633373696/)
