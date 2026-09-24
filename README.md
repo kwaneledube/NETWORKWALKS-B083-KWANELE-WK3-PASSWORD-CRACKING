@@ -89,10 +89,166 @@ The same decrypted PDF and Congratulations page shown above (PM1, Step 6) confir
 
 ---
 
+## PM1 (PDF2) — Password Cracking with JTR (John the Ripper + Johnny GUI)
+
+**Objective:** Crack the password of `My Locked PDF2.pdf` using JTR John and Johnny on Windows.
+
+### Steps & Evidence
+
+**1. Hash extracted from the PDF**
+Used the Online Hash Crack PDF Hash Extractor to pull the crackable `$pdf$...` hash from `My Locked PDF2.pdf`.
+
+![PDF2 hash extracted via Online Hash Crack](PDF2-W3-PM1/Locked%20PDF2%20Online%20Hash%20Cracked.png)
+
+**2. Attack run and password cracked in Johnny**
+The hash was loaded into Johnny and the attack was run against it, successfully recovering the password.
+
+![Johnny successfully cracking the PDF2 password](PDF2-W3-PM1/Password%20Cracked%20from%20Johnny.png)
+
+**Result:** Password = `password1`
+
+**3. PDF opened with the cracked password**
+The recovered password was used to unlock `My Locked PDF2.pdf`, revealing the flag: `nw{networkwalks_persistence_jtr_270521}`.
+
+![Decrypted PDF2 opened, confirming the correct password and flag](PDF2-W3-PM1/Locked%20PDF2%20opened.png)
+
+---
+
+## PM2 (PDF2) — Password Cracking with NetworkWalks Tools
+
+**Objective:** Crack the password of `My Locked PDF2.pdf` using the NetworkWalks Hash Calculator and Password Cracker web tools.
+
+### Steps & Evidence
+
+**1. Hash extracted via NetworkWalks Hash Calculator**
+Uploaded `My Locked PDF2.pdf` to the NetworkWalks Hash Calculator, which parsed the file locally and returned the `$pdf$...` hash.
+
+![PDF2 hash extracted via the NetworkWalks Hash Calculator](PDF2-W3-PM2/Hash%20in%20Hash%20Calculator.png)
+
+**2. Attack run with the built-in wordlist**
+Pasted the hash into the NetworkWalks Password Cracker and ran the attack using the tool's built-in 100-word list.
+
+![Password Cracker sifting through the built-in wordlist](PDF2-W3-PM2/Password%20Cracker%20sifting%20passwords.png)
+
+**3. Password cracked successfully**
+The built-in 100-word list matched the password on this run, without needing a larger wordlist.
+
+![PDF2 password cracked successfully via NetworkWalks Password Cracker](PDF2-W3-PM2/Password%20Cracked.png)
+
+**Result:** Password = `password1`
+
+**4. PDF opened with the cracked password**
+The recovered password was used to unlock the PDF, confirming the same result reached independently via PM1.
+
+![Decrypted PDF2 opened via NetworkWalks tools](PDF2-W3-PM2/locked%20pdf2%20opened.png)
+
+---
+
+## PM1 (PDF3) — Password Cracking with JTR (John the Ripper + Johnny GUI)
+
+**Objective:** Crack the password of `My Locked PDF3.pdf` using JTR John and Johnny on Windows.
+
+### Steps & Evidence
+
+**1. Hash extracted from the PDF**
+Used the Online Hash Crack PDF Hash Extractor to pull the crackable `$pdf$...` hash from `My Locked PDF3.pdf`.
+
+![PDF3 hash extracted via Online Hash Crack](PDF3-W3-PM1/PDF3_OnlineHasCrack.png)
+
+**2. Issue encountered — hash file failed to load in Johnny**
+The hash was manually copied into a text file and opened in Johnny, but the tool reported "No hashes loaded" with no format detected — even after re-saving the file with different encodings (UTF-8, ANSI). Comparing the pasted hash against the original revealed the manual copy-paste had introduced a corrupted/extra character into the hash string.
+
+![Johnny failing to load a corrupted hash file](PDF3-W3-PM1/No_Hashes_in_Johnny.png)
+
+**3. Fix — hash re-obtained via direct file download**
+Rather than manually copying the hash text again, the PDF was uploaded to the NetworkWalks Hash Calculator, and the hash was retrieved using its **Download** button instead of copy-paste. This produced a clean hash file with no manual transcription involved, which loaded correctly into Johnny.
+
+**4. Attack run and password cracked**
+With the clean hash file loaded, Johnny ran the attack and successfully recovered the password.
+
+![Johnny successfully cracking the PDF3 password](PDF3-W3-PM1/Password_Cracked_in_Johnny.png)
+
+**Result:** Password = `1qaz2wsx`
+
+**5. PDF opened with the cracked password**
+The recovered password was entered to unlock `My Locked PDF3.pdf`.
+
+![Entering the cracked password into My Locked PDF3.pdf](PDF3-W3-PM1/Inserting_Password.png)
+
+![Decrypted PDF3 opened, confirming the correct password and flag](PDF3-W3-PM1/PDF_opened.png)
+
+**Flag:** `nw{networkwalks_flag_260821_1}`
+
+---
+
+## PM2 (PDF3) — Password Cracking with NetworkWalks Tools
+
+**Objective:** Crack the password of `My Locked PDF3.pdf` using the NetworkWalks Hash Calculator and Password Cracker web tools.
+
+### Steps & Evidence
+
+**1. Hash extracted via NetworkWalks Hash Calculator**
+Uploaded `My Locked PDF3.pdf` to the NetworkWalks Hash Calculator, which parsed the file locally and returned the `$pdf$...` hash.
+
+![PDF3 hash extracted via the NetworkWalks Hash Calculator](PDF3-W3-PM2/PDF3_uploaded_in_Hash_Calculator.png)
+
+**2. Hash pasted into the Password Cracker**
+The extracted hash was pasted into the NetworkWalks Password Cracker, initially set to the built-in 100-word list.
+
+![PDF3 hash pasted into the NetworkWalks Password Cracker](PDF3-W3-PM2/Password_Cracker_with_Hash_visible.png)
+
+**3. Built-in wordlist exhausted — no match**
+The built-in 100-word list ran to completion without finding a match.
+
+![Built-in 100-word list exhausted with no match](PDF3-W3-PM2/Password_Access_Denied_100_wordlist.png)
+
+**4. Second attempt with a larger wordlist — also failed**
+A `fasttrack.txt` wordlist (221 words) was uploaded and run, but also exhausted with no match.
+
+![fasttrack.txt (221 words) also exhausted with no match](PDF3-W3-PM2/Fasttrack_ran-failed_too.png)
+
+**5. Third attempt with a larger wordlist — also failed**
+A `JTR_default_password.txt` wordlist (3,556 words) was uploaded and run, but this too failed to find a match.
+
+![JTR_default_password.txt (3,556 words) running and ultimately failing to match](PDF3-W3-PM2/JTR_wordlist_running-failed.png)
+
+**6. Loading rockyou.txt — the full 14.3 million word list**
+Since none of the smaller lists contained the password, the full `rockyou.txt` wordlist (14,344,380 words) was uploaded to the Password Cracker.
+
+![rockyou.txt (14,344,380 words) loaded into the Password Cracker](PDF3-W3-PM2/Inserted_rockyou_wordlist.png)
+
+**7. Issue encountered — browser tool froze on the full wordlist**
+Running rockyou.txt directly in the browser-based Password Cracker caused the page to become unresponsive. Since the tool runs entirely client-side in JavaScript rather than as a compiled program, attempting to process 14.3 million candidate passwords overwhelmed the browser tab.
+
+![Browser tab becoming unresponsive when running the full rockyou.txt wordlist](PDF3-W3-PM2/Rockyou_is_too_much_for_cracker.png)
+
+**8. Fix — cracked natively using John the Ripper in Kali Linux**
+Rather than forcing the browser tool past its limits, the same hash was moved into a Kali Linux VirtualBox VM (via a VirtualBox shared folder) and cracked using John the Ripper running natively against Kali's built-in `rockyou.txt`, which runs at full CPU speed rather than being throttled by the browser:
+
+```bash
+cp /media/sf_Downloads/"My Locked PDF3.hash.txt" ~/Desktop/hash3.txt
+cd ~/Desktop
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=PDF hash3.txt
+```
+
+The password was recovered almost instantly once run natively.
+
+![PDF3 password cracked successfully in Kali Linux using native John the Ripper](PDF3-W3-PM2/Kali_linux_cracked_password.png)
+
+**Result:** Password = `1qaz2wsx`
+
+**9. PDF opened with the cracked password**
+The same decrypted PDF and flag shown above (PM1, Step 5) confirms the password recovered independently in PM2.
+
+---
+
 ## Key Takeaways
-- A small or generic wordlist (like a default 100-word list) can fail against passwords that aren't in it — this is why choosing the right wordlist matters as much as the cracking tool itself.
+- A small or generic wordlist (like a default 100-word list) can fail against passwords that aren't in it — this is why choosing the right wordlist matters as much as the cracking tool itself. On `My Locked PDF2.pdf`, the built-in 100-word list was actually enough to find the password on the first attempt.
 - Both a dedicated desktop tool (JTR/Johnny) and a lightweight browser-based tool can recover the same password from the same hash, since both are running the same dictionary-attack logic.
 - Hashing is one-way (used to validate), while encryption is two-way (used to protect data that must later be recovered) — this is why cracking a password hash means guessing until a match is found, rather than "decrypting" it directly.
+- Password strength varies significantly between files: `My Locked PDF1.pdf` needed a larger, targeted wordlist, while `My Locked PDF2.pdf` fell to the default 100-word list almost immediately — reinforcing that common or short passwords are cracked quickly regardless of the tool used.
+- Manually copying and pasting a long hash string is error-prone — a single corrupted or duplicated character (as happened with `My Locked PDF3.pdf`) will silently break the hash format and cause tools like Johnny to report "No hashes loaded" with no clear reason why. Downloading the hash directly as a file, rather than copy-pasting it, avoids this failure mode entirely.
+- Browser-based cracking tools are convenient for small-to-medium wordlists, but they run entirely client-side in JavaScript and can freeze when asked to process very large wordlists (like the 14.3-million-entry `rockyou.txt`). Native tools like John the Ripper, run directly on the OS (in this case, inside Kali Linux), handle the same wordlist at full CPU speed without issue — reinforcing why real-world password auditing is typically done with native tools rather than browser demos at scale.
 
 ## Tools Used
 - John the Ripper (Jumbo) + Johnny GUI
